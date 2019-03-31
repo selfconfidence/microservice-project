@@ -4,9 +4,13 @@ import ml.weiyan.base.pojo.Label;
 import ml.weiyan.base.service.LabelService;
 import ml.weiyan.result.ResponseCode;
 import ml.weiyan.result.ResponseEntity;
+import ml.weiyan.result.ResponsePageEntity;
 import ml.weiyan.utils.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author misterWei
@@ -49,5 +53,26 @@ public class LabelController {
     public ResponseEntity remove(@PathVariable("labelId") String labelId){
        labelService.remove(labelId);
         return  new ResponseEntity(true, ResponseCode.OK,"删除成功！");
+    }
+
+    /**
+     * 根据条件查询
+     * @param label
+     * @return
+     */
+    @RequestMapping(value = "/label/search",method = RequestMethod.POST)
+    public ResponseEntity search(@RequestBody Label label){
+        List<Label> labelList = labelService.search(label);
+        return new ResponseEntity(true,ResponseCode.OK,"查询成功!",labelList);
+    }
+    /**
+     * 根据条件分页查询
+     * @param label
+     * @return
+     */
+    @RequestMapping(value = "/label/search/{page}/{size}",method = RequestMethod.POST)
+    public ResponseEntity searchQuery(@RequestBody Label label,@PathVariable("page") Integer page,@PathVariable("size") Integer size){
+        Page<Label> labels = labelService.searchQuery(label, page, size);
+        return new ResponseEntity(true,ResponseCode.OK,"查询成功!",new ResponsePageEntity<Label>(labels.getTotalElements(),labels.getContent()));
     }
 }

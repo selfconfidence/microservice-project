@@ -1,5 +1,5 @@
 server:
-  port: 9100
+  port: 9001
   servlet:
     context-path: /base
 spring:
@@ -14,4 +14,4 @@ spring:
     database: mysql
     show-sql: true
     generate-ddl: true
-    open-in-view: true
+    open-in-view: true #开启jap防止懒加载  需要配置对应的bean信息才可生效。
