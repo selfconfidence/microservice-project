@@ -10,6 +10,9 @@
         <module>microservice_common</module>
         <module>microservice_base</module>
         <module>microservice_recruit</module>
+        <module>microservice_qa</module>
+        <module>microservice_article</module>
+        <module>microservice_gathering</module>
     </modules>
     <packaging>pom</packaging>
 
