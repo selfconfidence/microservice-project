@@ -13,6 +13,7 @@
         <module>microservice_qa</module>
         <module>microservice_article</module>
         <module>microservice_gathering</module>
+        <module>microservice_spit</module>
     </modules>
     <packaging>pom</packaging>
 

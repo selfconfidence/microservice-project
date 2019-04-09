@@ -1,0 +1,11 @@
+server:
+  port: 9006
+  servlet:
+    context-path: /spit
+spring:
+  data:
+    mongodb:
+      host: 192.168.1.155
+      database: spitdb
+  application:
+    name: microservice_spit
