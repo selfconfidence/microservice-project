@@ -1,6 +1,8 @@
 package ml.weiyan.spit.dao;
 
 import ml.weiyan.spit.pojo.Spit;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,4 +13,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface SpitDao extends MongoRepository<Spit,String> {
+    public Page<Spit> findByParentid(String parentId, Pageable pageable);
 }
