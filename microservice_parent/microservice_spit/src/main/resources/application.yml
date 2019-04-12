@@ -5,7 +5,16 @@ server:
 spring:
   data:
     mongodb:
-      host: 192.168.1.155
+      host: 192.168.52.128
       database: spitdb
   application:
     name: microservice_spit
+  banner:
+    charset: utf-8
+    #image:
+     # location: classpath:banner.png
+     # width: 80
+     # height: 70
+     # margin: 3
+     # invert: false
+    location: classpath:banner.txt
