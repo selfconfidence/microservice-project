@@ -5,7 +5,7 @@ server:
 spring:
   data:
     mongodb:
-      host: 192.168.52.128
+      host: 192.168.1.156
       database: spitdb
   application:
     name: microservice_spit
@@ -18,3 +18,5 @@ spring:
      # margin: 3
      # invert: false
     location: classpath:banner.txt
+  redis:
+    host: 192.168.1.156
