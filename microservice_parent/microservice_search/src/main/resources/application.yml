@@ -1,0 +1,10 @@
+server:
+  port: 9007
+  servlet:
+    context-path: /search
+spring:
+  application:
+    name: microservice_search
+  data:
+    elasticsearch:
+      cluster-nodes: 127.0.0.1:9300

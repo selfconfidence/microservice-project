@@ -14,6 +14,7 @@
         <module>microservice_article</module>
         <module>microservice_gathering</module>
         <module>microservice_spit</module>
+        <module>microservice_search</module>
     </modules>
     <packaging>pom</packaging>
 
