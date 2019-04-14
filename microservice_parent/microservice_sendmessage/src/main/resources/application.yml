@@ -1,0 +1,7 @@
+server:
+  port: 9009
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: microservice_sendmessage
