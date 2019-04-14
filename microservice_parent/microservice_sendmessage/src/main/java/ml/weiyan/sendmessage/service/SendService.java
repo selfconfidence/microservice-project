@@ -40,7 +40,7 @@ public class SendService {
         request.setAction("SendSms");
         request.putQueryParameter("PhoneNumbers", phone);
         request.putQueryParameter("SignName", "品优购Sms");
-        request.putQueryParameter("TemplateCode", "SMS_142948546");
+        request.putQueryParameter("TemplateCode", "SMS_163432797");
         request.putQueryParameter("TemplateParam", "{\"code\":\""+code+"\"}");
         try {
              response = client.getCommonResponse(request);
