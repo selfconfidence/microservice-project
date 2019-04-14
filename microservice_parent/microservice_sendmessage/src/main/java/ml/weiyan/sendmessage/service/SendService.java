@@ -42,13 +42,6 @@ public class SendService {
         request.putQueryParameter("SignName", "品优购Sms");
         request.putQueryParameter("TemplateCode", "SMS_163432797");
         request.putQueryParameter("TemplateParam", "{\"code\":\""+code+"\"}");
-        try {
-             response = client.getCommonResponse(request);
-        } catch (ServerException e) {
-            e.printStackTrace();
-        } catch (ClientException e) {
-            e.printStackTrace();
-        }
         return response.getData();
     }
 }
