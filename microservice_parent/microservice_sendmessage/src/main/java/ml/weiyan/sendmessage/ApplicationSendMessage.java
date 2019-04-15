@@ -1,5 +1,6 @@
 package ml.weiyan.sendmessage;
 
+import ml.weiyan.utils.PhoneFormatCheckUtils;
 import ml.weiyan.utils.SendMessages6Util;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,5 +21,10 @@ public class ApplicationSendMessage {
     @Bean
     public SendMessages6Util getCode(){
         return new SendMessages6Util();
+    }
+
+    @Bean
+    public PhoneFormatCheckUtils getPhoneFormatCheckUtils(){
+        return new PhoneFormatCheckUtils();
     }
 }
