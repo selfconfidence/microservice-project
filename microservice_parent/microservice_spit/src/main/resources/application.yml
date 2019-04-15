@@ -1,7 +1,7 @@
 server:
   port: 9006
   servlet:
-    context-path: /spit
+    context-path: /
 spring:
   data:
     mongodb:

@@ -1,9 +1,11 @@
 server: 
   port: 9005
+  servlet:
+    context-path: /
 spring: 
   application:  
     name: microservice_gathering-gathering #指定服务名
-  datasource:  
+  datasource:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://192.168.1.155:3306/tensquare_gathering?characterEncoding=UTF8
     username: root
