@@ -15,6 +15,7 @@
         <module>microservice_gathering</module>
         <module>microservice_spit</module>
         <module>microservice_search</module>
+        <module>microservice_rabbitmq</module>
     </modules>
     <packaging>pom</packaging>
 
