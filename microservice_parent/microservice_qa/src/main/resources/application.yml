@@ -1,7 +1,7 @@
 server: 
   port: 9003
   servlet:
-    context-path: /qa
+    context-path: /
 spring: 
   application:  
     name: microservice-qa #指定服务名

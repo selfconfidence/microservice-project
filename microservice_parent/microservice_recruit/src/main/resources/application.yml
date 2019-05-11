@@ -1,7 +1,7 @@
 server: 
   port: 9002
   servlet:
-      context-path: /recruit
+      context-path: /
 spring: 
   application:  
     name: microservice_recruit #指定服务名

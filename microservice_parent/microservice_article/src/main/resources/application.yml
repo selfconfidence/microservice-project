@@ -1,7 +1,7 @@
 server: 
   port: 9004
   servlet:
-    context-path: /article
+    context-path: /
 spring: 
   application:  
     name: microservice_article #指定服务名

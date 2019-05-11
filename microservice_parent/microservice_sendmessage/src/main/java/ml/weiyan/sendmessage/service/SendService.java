@@ -1,19 +1,18 @@
 package ml.weiyan.sendmessage.service;
 
+import com.alibaba.fastjson.JSON;
 import com.aliyuncs.CommonRequest;
 import com.aliyuncs.CommonResponse;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.exceptions.ClientException;
-import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import ml.weiyan.sendmessage.config.SendConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Map;
 
 /**
  * @author mister_wei
@@ -28,7 +27,7 @@ public class SendService {
     @Autowired
     private SendConfig snedConfig;
 
-    public String sendMessage(String code,String phone) {
+    public Map sendMessage(String code, String phone) throws ClientException {
         DefaultProfile profile = DefaultProfile.getProfile("default", snedConfig.getAccessKey(), snedConfig.getAccessKeySecret());
         IAcsClient client = new DefaultAcsClient(profile);
         CommonResponse response = null;
@@ -42,6 +41,7 @@ public class SendService {
         request.putQueryParameter("SignName", "品优购Sms");
         request.putQueryParameter("TemplateCode", "SMS_163432797");
         request.putQueryParameter("TemplateParam", "{\"code\":\""+code+"\"}");
-        return response.getData();
+        response = client.getCommonResponse(request);
+        return JSON.parseObject(response.getData(), Map.class);
     }
 }

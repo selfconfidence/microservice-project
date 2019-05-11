@@ -15,7 +15,11 @@
         <module>microservice_gathering</module>
         <module>microservice_spit</module>
         <module>microservice_search</module>
+<<<<<<< HEAD
         <module>microservice_rabbitmq</module>
+=======
+        <module>microservice_sendmessage</module>
+>>>>>>> 99cd0f61fff076981b80bffa83a18458b942aa5f
     </modules>
     <packaging>pom</packaging>
 
