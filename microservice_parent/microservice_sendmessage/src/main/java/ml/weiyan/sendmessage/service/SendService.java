@@ -38,7 +38,7 @@ public class SendService {
         request.setVersion("2017-05-25");
         request.setAction("SendSms");
         request.putQueryParameter("PhoneNumbers", phone);
-        request.putQueryParameter("SignName", "品优购Sms");
+        request.putQueryParameter("SignName", "Microservice");
         request.putQueryParameter("TemplateCode", "SMS_163432797");
         request.putQueryParameter("TemplateParam", "{\"code\":\""+code+"\"}");
         response = client.getCommonResponse(request);

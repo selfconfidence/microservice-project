@@ -8,3 +8,8 @@ spring:
   devtools:
     livereload:
       enabled: true
+  rabbitmq:
+    host: 192.168.238.166
+    port: 5672
+    username: guest
+    password: guest
