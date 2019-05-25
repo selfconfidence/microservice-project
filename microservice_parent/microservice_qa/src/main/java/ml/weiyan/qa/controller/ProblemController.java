@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 /**
  * 控制器层
@@ -72,7 +73,14 @@ public class ProblemController {
 	 * @param problem
 	 */
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity add(@RequestBody Problem problem  ){
+	public ResponseEntity add(@RequestBody Problem problem , HttpServletRequest request){
+		//问答必须有用户登录才可增加问题
+		//经过拦截器操作之后，直接获取request对象制定的数据即可
+		String claimsAdmin = (String) request.getAttribute("claims_user");
+		if (claimsAdmin == null || !claimsAdmin.equals("user")) {
+			return new ResponseEntity(false,ResponseCode.ERROR,"权限不足");
+		}
+
 		problemService.add(problem);
 		return new ResponseEntity(true,ResponseCode.OK,"增加成功");
 	}
