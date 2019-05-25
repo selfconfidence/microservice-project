@@ -5,12 +5,14 @@ import ml.weiyan.result.ResponseEntity;
 import ml.weiyan.result.ResponsePageEntity;
 import ml.weiyan.user.pojo.User;
 import ml.weiyan.user.service.UserService;
+import ml.weiyan.utils.JwtUtil;
 import ml.weiyan.utils.PhoneFormatCheckUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -31,6 +33,9 @@ public class UserController {
 
 	@Autowired
 	private RedisTemplate redisTemplate;
+
+	@Autowired
+    private JwtUtil jwtUtil;
 	
 	
 	/**
@@ -82,7 +87,14 @@ public class UserController {
 	 */
 	@RequestMapping(method=RequestMethod.POST)
 	public ResponseEntity add(@RequestBody User user  ){
-		userService.add(user);
+		if (user.getNickname() == null || user.getPassword() == null) {
+			return new ResponseEntity(false,ResponseCode.ERROR,"信息未补全");
+		}
+		try {
+			userService.add(user);
+		}catch (Exception e){
+			return new ResponseEntity(false,ResponseCode.ERROR,e.getMessage());
+		}
 		return new ResponseEntity(true,ResponseCode.OK,"增加成功");
 	}
 	
@@ -102,8 +114,14 @@ public class UserController {
 	 * @param id
 	 */
 	@RequestMapping(value="/{id}",method= RequestMethod.DELETE)
-	public ResponseEntity delete(@PathVariable String id ){
-		userService.deleteById(id);
+	public ResponseEntity delete(@PathVariable String id, HttpServletRequest request){
+	    //经过拦截器操作之后，直接获取request对象制定的数据即可
+        String claimsAdmin = (String) request.getAttribute("claims_admin");
+        if (claimsAdmin == null || !claimsAdmin.equals("admin")) {
+            return new ResponseEntity(false,ResponseCode.ERROR,"权限不足");
+        }
+      //验证都通过之后才可以删除操作。
+        userService.deleteById(id);
 		return new ResponseEntity(true,ResponseCode.OK,"删除成功");
 	}
 
@@ -136,6 +154,29 @@ public class UserController {
 		userService.register(user);
 
 		return new ResponseEntity(true,ResponseCode.OK,"注册成功!");
+	}
+
+	/**
+	 * 登录
+	 * @param user
+	 * @return
+	 */
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ResponseEntity login(@RequestBody User user) {
+		if (user.getNickname() == null || user.getPassword() == null) {
+			return new ResponseEntity(false, ResponseCode.ERROR, "内容请补全");
+		}
+
+		User adminEntity =  userService.login(user);
+		//使用JWT进行用户
+
+		if (adminEntity == null){
+			return new ResponseEntity(false, ResponseCode.LOGINERROR, "验证未通过");
+		}
+        String token = jwtUtil.createJWT(adminEntity.getId(), adminEntity.getNickname(), "user");
+        return new ResponseEntity(true, ResponseCode.OK, "验证通过",token);
+
 
 	}
 }

@@ -19,3 +19,8 @@ spring:
     port: 5672
     username: guest
     password: guest
+#添加自定义properties配置
+jwt:
+  config:
+    key: yanzhi
+    ttl: 3600000

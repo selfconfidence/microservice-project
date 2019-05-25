@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -39,6 +40,9 @@ public class UserService {
 
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
+
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	/**
 	 * 查询全部列表
@@ -86,8 +90,12 @@ public class UserService {
 	 * 增加
 	 * @param user
 	 */
-	public void add(User user) {
+	public void add(User user)throws Exception {
 		user.setId( idWorker.nextId()+"" );
+		User userEntity = userDao.findByNickname(user.getNickname());
+		if (userEntity != null) {
+			throw new Exception("用户已存在！");
+		}
 		userDao.save(user);
 	}
 
@@ -186,6 +194,24 @@ public class UserService {
     	user.setOnline(0L);
     	user.setFanscount(0);
     	user.setFollowcount(0);
+    	user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
     	userDao.save(user);
+	}
+
+	/**
+	 * 进行密码匹配操作
+	 *
+	 * @param user
+	 * @return
+	 */
+
+	public User login(User user) {
+		//根据用户名查询数据库数据
+		User adminEntity = userDao.findByNickname(user.getNickname());
+		if (adminEntity != null && bCryptPasswordEncoder.matches(user.getPassword(),adminEntity.getPassword())) {
+			return adminEntity;
+		}
+
+		return null;
 	}
 }
