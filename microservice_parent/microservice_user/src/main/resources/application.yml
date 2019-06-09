@@ -2,7 +2,7 @@ server:
   port: 9010
 spring: 
   application:  
-    name: microservice_user #指定服务名
+    name: microservice-user #指定服务名
   datasource:  
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://192.168.238.166:3306/tensquare_user?characterEncoding=UTF8
@@ -24,3 +24,11 @@ jwt:
   config:
     key: yanzhi
     ttl: 3600000
+eureka:
+  instance:
+    prefer-ip-address: false
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:6868/eureka/
+
+

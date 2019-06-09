@@ -4,7 +4,7 @@ server:
       context-path: /
 spring: 
   application:  
-    name: microservice_recruit #指定服务名
+    name: microservice-recruit #指定服务名
   datasource:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://192.168.1.155:3306/tensquare_recruit?characterEncoding=utf8

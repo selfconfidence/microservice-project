@@ -4,7 +4,7 @@ server:
     context-path: /
 spring:
   application:
-    name: microservice_search
+    name: microservice-search
   data:
     elasticsearch:
       cluster-nodes: 192.168.1.156:9300

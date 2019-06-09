@@ -4,10 +4,10 @@ server:
     context-path: /
 spring:
   application:
-    name: microservice_base
+    name: microservice-base
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.0.107:3306/tensquare_base?characterEncoding=utf8
+    url: jdbc:mysql://192.168.238.166:3306/tensquare_base?characterEncoding=utf8
     username: root
     password: 12345
   jpa:
@@ -15,3 +15,9 @@ spring:
     show-sql: true
     generate-ddl: true
     open-in-view: true #开启jap防止懒加载  需要配置对应的bean信息才可生效。
+eureka:
+  instance:
+    prefer-ip-address: false
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:6868/eureka/

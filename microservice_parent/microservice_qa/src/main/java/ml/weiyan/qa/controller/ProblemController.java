@@ -1,5 +1,6 @@
 package ml.weiyan.qa.controller;
 
+import ml.weiyan.qa.eureka.service.BaseService;
 import ml.weiyan.qa.pojo.Problem;
 import ml.weiyan.qa.service.ProblemService;
 import ml.weiyan.result.ResponseCode;
@@ -20,11 +21,18 @@ import java.util.Map;
 @CrossOrigin
 @RequestMapping("/problem")
 public class ProblemController {
-
 	@Autowired
 	private ProblemService problemService;
-	
-	
+	//注入该远程调用
+	@Autowired
+	private BaseService baseService;
+
+	@RequestMapping(value ="/label/{labelId}",method = RequestMethod.GET)
+    public ResponseEntity findByEurekaBaseId(@PathVariable("labelId") String labelId){
+		ResponseEntity result = baseService.findOne(labelId);
+		return result;
+	}
+
 	/**
 	 * 查询全部数据
 	 * @return
@@ -43,8 +51,6 @@ public class ProblemController {
 	public ResponseEntity findById(@PathVariable String id){
 		return new ResponseEntity(true,ResponseCode.OK,"查询成功",problemService.findById(id));
 	}
-
-
 	/**
 	 * 分页+多条件查询
 	 * @param searchMap 查询条件封装
@@ -80,7 +86,6 @@ public class ProblemController {
 		if (claimsAdmin == null || !claimsAdmin.equals("user")) {
 			return new ResponseEntity(false,ResponseCode.ERROR,"权限不足");
 		}
-
 		problemService.add(problem);
 		return new ResponseEntity(true,ResponseCode.OK,"增加成功");
 	}
@@ -123,7 +128,6 @@ public class ProblemController {
 	public ResponseEntity hostList(@PathVariable("label") String lable,@PathVariable("page") int page,@PathVariable("size") int size){
 		Page<Problem> problems = this.problemService.hotList(lable, page, size);
 		return new ResponseEntity(true,ResponseCode.OK,"查询成功",new ResponsePageEntity<>(problems.getTotalElements(),problems.getContent()));
-
 	}
 	/**
 	 * 等待回答列表
@@ -133,6 +137,5 @@ public class ProblemController {
 	public ResponseEntity waitList(@PathVariable("label") String lable,@PathVariable("page") int page,@PathVariable("size") int size){
 		Page<Problem> problems = this.problemService.waitList(lable, page, size);
 		return new ResponseEntity(true,ResponseCode.OK,"查询成功",new ResponsePageEntity<>(problems.getTotalElements(),problems.getContent()));
-
 	}
 }

@@ -2,6 +2,7 @@ package ml.weiyan.base;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * @author misterWei
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @mailbox mynameisweiyan@gmail.com
  */
 @SpringBootApplication
+@EnableEurekaClient
 public class ApplicationBase {
     public static void main(String[] args) {
         SpringApplication.run(ApplicationBase.class,args);

@@ -4,12 +4,19 @@ server:
     context-path: /
 spring: 
   application:  
-    name: microservice_gathering-gathering #指定服务名
+    name: microservice-gathering #指定服务名
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.1.155:3306/tensquare_gathering?characterEncoding=UTF8
+    url: jdbc:mysql://192.168.238.166:3306/tensquare_gathering?characterEncoding=UTF8
     username: root
     password: 12345
   jpa: 
     database: MySQL
     show-sql: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:6868/eureka/
+  instance:
+    prefer-ip-address: true  # 默认是false， fasle也就是说只能在本地ip中去使用远程服务，true可以跨ip去调用。
+

@@ -18,6 +18,8 @@
         <module>microservice_rabbitmq</module>
         <module>microservice_sendmessage</module>
         <module>microservice_user</module>
+        <module>microservice_eureka</module>
+        <module>microservice_friends</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -36,7 +38,19 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
     </properties>
-<!--引用通用的模块-->
+    <!--引用SpringCloud-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.M9</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <!--引用通用的模块-->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -48,7 +62,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-<!--以下是基于spring官网中介绍，这些指向spring官网，对微服务开发有这插件支持，会自动加载所需要的插件-->
+    <!--以下是基于spring官网中介绍，这些指向spring官网，对微服务开发有这插件支持，会自动加载所需要的插件-->
     <repositories>
         <repository>
             <id>spring-snapshots</id>

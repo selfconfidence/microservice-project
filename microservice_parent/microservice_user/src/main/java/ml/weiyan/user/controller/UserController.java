@@ -36,6 +36,15 @@ public class UserController {
 
 	@Autowired
     private JwtUtil jwtUtil;
+
+	/**
+	 * 更改粉丝量
+	 */
+	@RequestMapping(value = "/{userId}/{friendId}/{flag}",method= RequestMethod.PUT)
+	public void  updateFanscountAndFollowcount(@PathVariable("userId")String userId,@PathVariable("friendId") String friendId,@PathVariable("flag") int flag){
+
+		userService.updateFanscountAndFollowcount(userId,friendId,flag);
+	}
 	
 	
 	/**

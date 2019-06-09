@@ -56,7 +56,6 @@ public class SpitController {
          String userId = "123456";
         if (redisTemplate.opsForValue().get("thumbup_"+userId+spitid) != null) {
             return new ResponseEntity(false,ResponseCode.REMOTEERROR,"不可点赞!");
-
         }
         spitService.thumbup(spitid);
         redisTemplate.opsForValue().set("thumbup_"+userId+spitid,spitid);

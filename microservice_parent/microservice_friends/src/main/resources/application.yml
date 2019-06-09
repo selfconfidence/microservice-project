@@ -1,0 +1,25 @@
+server:
+  port: 9011
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: microservice-friends #指定服务名
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.238.166:3306/tensquare_friend?characterEncoding=UTF8
+    username: root
+    password: 12345
+  jpa:
+    database: MySQL
+    show-sql: true
+eureka:
+  instance:
+    prefer-ip-address: false
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:6868/eureka/
+jwt:
+  config:
+    key: yanzhi
+    ttl: 3600000

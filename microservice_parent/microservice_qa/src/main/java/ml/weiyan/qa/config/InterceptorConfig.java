@@ -1,11 +1,9 @@
 package ml.weiyan.qa.config;
-
 import ml.weiyan.qa.interceptor.TokenInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-
 /**
  * @author misterWei
  * @create 2019年05月25号:17点37分

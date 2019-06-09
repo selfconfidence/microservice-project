@@ -12,6 +12,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -27,6 +28,7 @@ import java.util.concurrent.TimeUnit;
  *
  */
 @Service
+@Transactional
 public class UserService {
 
 	@Autowired
@@ -213,5 +215,13 @@ public class UserService {
 		}
 
 		return null;
+	}
+
+
+
+    public void updateFanscountAndFollowcount(String userId, String friendId, int flag) {
+    //为用户添加关注量 为好友添加粉丝量
+		userDao.updateFollowcount(userId,flag);
+		userDao.updateFanscount(friendId,flag);
 	}
 }
