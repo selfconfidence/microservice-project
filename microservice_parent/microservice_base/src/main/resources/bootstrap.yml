@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    config:
+      name: base   # gitee中文件名前缀
+      profile: dev # gitee中文件名后缀 所以名称规范才是 ${name}-${end}.yml
+      label: master # 那个分支
+      uri: http://127.0.0.1:12380 # config的服务端
+      
+      

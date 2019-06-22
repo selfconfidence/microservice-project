@@ -1,0 +1,20 @@
+server:
+  port: 12380
+spring:
+  application:
+    name: microservice-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/yanIcloud/microservice-config.git
+          username: yanIcloud
+          password: Weiyan980522
+  rabbitmq:
+    host: 192.168.238.166
+management:  #暴露触发消息总线的地址 固定写法
+  endpoint:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh

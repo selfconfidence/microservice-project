@@ -7,6 +7,8 @@ import ml.weiyan.result.ResponseEntity;
 import ml.weiyan.result.ResponsePageEntity;
 import ml.weiyan.utils.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,15 +22,19 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/label")
+@RefreshScope
 public class LabelController {
     @Autowired
     private IdWorker idWorker;
 
+    @Value("${ceshi}")
+    private String ceshi;
     @Autowired
     private LabelService labelService;
 
     @RequestMapping(value = "/label",method = RequestMethod.GET)
     public ResponseEntity findAll(){
+        System.out.println(ceshi);
         return new ResponseEntity(true, ResponseCode.OK,"查询成功！",labelService.findAll());
     }
 

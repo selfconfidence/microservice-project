@@ -20,6 +20,9 @@
         <module>microservice_user</module>
         <module>microservice_eureka</module>
         <module>microservice_friends</module>
+        <module>microservice_manager_zuul</module>
+        <module>microservice_web_zuul</module>
+        <module>microservice-config</module>
     </modules>
     <packaging>pom</packaging>
 

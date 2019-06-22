@@ -1,7 +1,6 @@
 package ml.weiyan.qa.config;
 import ml.weiyan.qa.interceptor.TokenInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 /**
@@ -10,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
  * @mailbox mynameisweiyan@gmail.com
  * //这个配置主要是用来让自定义的拦截器生效
  */
-@Component
+//@Component
 public class InterceptorConfig extends WebMvcConfigurationSupport {
 
     @Autowired

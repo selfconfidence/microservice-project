@@ -38,7 +38,12 @@ public class ProblemController {
 	 * @return
 	 */
 	@RequestMapping(method= RequestMethod.GET)
-	public ResponseEntity findAll(){
+
+	public ResponseEntity findAll(HttpServletRequest request){
+		String authorization = request.getHeader("Authorization");
+		String method = request.getMethod();
+		System.out.println(method);
+		System.out.println(authorization);
 		return new ResponseEntity(true, ResponseCode.OK,"查询成功",problemService.findAll());
 	}
 	
